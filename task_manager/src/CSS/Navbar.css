@@ -44,6 +44,11 @@
     display: block;
     margin: 5px 0;
   }
+  .navbar-brand{
+    color: white;
+    text-decoration: none;
+    padding-left: 26px;
+  }
   
   /* Responsive design */
   @media (max-width: 768px) {
