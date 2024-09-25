@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "../CSS/taskList.css";
-
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -22,7 +20,7 @@ const TaskList = () => {
             month: "short",
             year: "numeric",
           });
-    
+
           return { ...task, dueDate }; // Updating dueDate with the formatted version
         });
         setTasks(formattedTasks);
@@ -66,7 +64,9 @@ const TaskList = () => {
             <tr key={task._id}>
               <td>{task.title}</td>
               <td>{task.description}</td>
-              <td>{task.status}</td>
+              <td>
+                <span className={`status ${task.status}`}>{task.status}</span>
+              </td>
               <td>{task.dueDate}</td>
               <td>
                 <Link to={`/tasks/edit/${task._id}`} className="icon-btn">

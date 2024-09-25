@@ -62,3 +62,16 @@
     color: red; /* Red color for delete icon */
   }
   
+
+  .status.pending {
+    color: orange;
+  }
+  
+  .status.completed {
+    color: green;
+  }
+  
+  .status.in-progress{
+    color: blue;
+  }
+  
