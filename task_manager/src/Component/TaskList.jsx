@@ -16,7 +16,16 @@ const TaskList = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
-        setTasks(response.data);
+        const formattedTasks = response.data.map((task) => {
+          const dueDate = new Date(task.dueDate).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          });
+    
+          return { ...task, dueDate }; // Updating dueDate with the formatted version
+        });
+        setTasks(formattedTasks);
       })
       .catch((error) => {
         console.log("Error fetching tasks", error);
