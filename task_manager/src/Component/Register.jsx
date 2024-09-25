@@ -3,7 +3,7 @@ import axios from "axios";
 import "../CSS/login.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,8 @@ const Register = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,6 +42,8 @@ const Register = () => {
           formData
         );
         toast.success(response.data.message);
+        navigate("/login");
+
       } catch (error) {
         toast.error(error.response.data.message)
       }

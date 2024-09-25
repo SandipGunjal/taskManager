@@ -53,7 +53,7 @@ const loginUser = async (req, res) => {
       };
     
     res.json({ message: "Login successfully !", token , user:userDetails});
-    // console.log(token,'token login');
+    console.log(user,'token login');
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

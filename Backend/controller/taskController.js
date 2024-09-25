@@ -1,10 +1,12 @@
-
-const Task = require('../Model/taskModel');
+const Task = require("../Model/taskModel");
+const { format } = require("date-fns");
 
 // Get all tasks for a user
 const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find({ userId: req.user.id });
+    // const formattedDate = Task.dueDate ? format(Task.dueDate, 'dd MMM yyyy') : null;
+
     res.json(tasks);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -15,7 +17,14 @@ const getTasks = async (req, res) => {
 const createTask = async (req, res) => {
   const { title, description, status, dueDate } = req.body;
   try {
-    const newTask = await Task.create({ userId: req.user.id, title, description, status, dueDate });
+    // Create a new task, associated with the logged-in user
+    const newTask = await Task.create({
+      userId: req.user._id,
+      title,
+      description,
+      status,
+      dueDate,
+    });
     res.status(201).json(newTask);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -26,7 +35,11 @@ const createTask = async (req, res) => {
 const updateTask = async (req, res) => {
   const { title, description, status, dueDate } = req.body;
   try {
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, { title, description, status, dueDate }, { new: true });
+    const updatedTask = await Task.findByIdAndUpdate(
+      req.params.id,
+      { title, description, status, dueDate },
+      { new: true }
+    );
     res.json(updatedTask);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -37,7 +50,7 @@ const updateTask = async (req, res) => {
 const deleteTask = async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Task deleted' });
+    res.json({ message: "Task deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

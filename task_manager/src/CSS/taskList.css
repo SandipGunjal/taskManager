@@ -45,4 +45,20 @@
   a:hover {
     text-decoration: underline;
   }
+  .icon-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: color 0.2s ease;
+  }
+  
+  .icon-btn:hover {
+    color: #007bff; /* Blue on hover */
+  }
+  
+  .delete-btn:hover {
+    color: red; /* Red color for delete icon */
+  }
   

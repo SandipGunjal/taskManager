@@ -1,0 +1,70 @@
+/* Basic Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: rem; */
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .navbar-brand a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none !important;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none !important;
+  }
+  
+  .nav-link:hover {
+    color: #ddd;
+  }
+  
+  /* Toggler button styling */
+  .navbar-toggler {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .navbar-toggler-icon {
+    width: 25px;
+    height: 13px;
+    background-color: white;
+    display: block;
+    margin: 5px 0;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .navbar-nav {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      background-color: #007bff;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    .navbar-collapse.show {
+      display: flex;
+    }
+  
+    .navbar-toggler {
+      display: block;
+    }
+  }
+  

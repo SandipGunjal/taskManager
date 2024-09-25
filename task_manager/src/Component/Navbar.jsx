@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
+import '../CSS/Navbar.css'
+
 
 const Navbar = () => {
   return (
     <div className="">
       <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand">
           Task Manager
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <Link className="nav-link" >
+              <Link className="nav-link" to='/' >
                 Home 
               </Link>
             </li>
@@ -39,7 +39,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to='/tasklist' >
+              <Link className="nav-link" to='/tasks' >
                 Task List
               </Link>
             </li>

@@ -1,11 +1,10 @@
 // src/components/LoginForm.js
 import React, { useState } from "react";
 import axios from "axios";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../CSS/login.css";
-import { Link } from "react-router-dom";
-import Register from "./Register";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +13,7 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -38,14 +38,15 @@ const Login = () => {
       try {
         const response = await axios.post(
           "http://localhost:5000/api/auth/login",
-          formData,
+          formData
         );
-        // console.log(response,'res');
-        // console.log("Login successful", response.data.message);
-        toast.success(response.data.message)
+        // Save token to localStorage
+        localStorage.setItem("token", response.data.token);
+        toast.success(response.data.message);
+        navigate("/tasks");
       } catch (error) {
         // console.log(error);
-        toast.error(error.response.data.message)
+        toast.error(error.response.data.message);
       }
     }
   };
