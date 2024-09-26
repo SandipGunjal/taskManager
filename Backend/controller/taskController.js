@@ -25,7 +25,7 @@ const createTask = async (req, res) => {
       status,
       dueDate,
     });
-    res.status(201).json(newTask);
+    res.status(201).json({message:'Successfully Add Task',newTask});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -40,7 +40,7 @@ const updateTask = async (req, res) => {
       { title, description, status, dueDate },
       { new: true }
     );
-    res.json(updatedTask);
+    res.json({message:'Updated Successful',updatedTask});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

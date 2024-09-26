@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "../CSS/taskList.css";
+import { toast } from "react-toastify";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -37,6 +38,8 @@ const TaskList = () => {
       })
       .then((response) => {
         setTasks(tasks.filter((task) => task._id !== id));
+        toast.success(response.data.message)
+
       })
       .catch((error) => {
         console.error("There was an error deleting the task!", error);

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "../CSS/taskForm.css";
 import styled from "styled-components";
+import { toast } from 'react-toastify';
 
 const Button = styled.button`
   display: inline-block;
@@ -81,6 +82,7 @@ const TaskForm = () => {
       axios
         .put(`http://localhost:5000/api/tasks/${id}`, task, config)
         .then((response) => {
+          toast.success(response.data.message)
           navigate("/tasks"); // redirect to task list after update
         })
         .catch((error) => {
@@ -95,7 +97,7 @@ const TaskForm = () => {
         .post("http://localhost:5000/api/tasks", task, config)
         .then((response) => {
           console.log(response);
-
+          toast.success(response.data.message)
           navigate("/tasks"); // redirect to task list after creation
         })
         .catch((error) => {
